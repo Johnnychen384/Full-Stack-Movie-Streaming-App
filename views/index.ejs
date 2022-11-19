@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Movies HomePage
+        </title>
+        <%- include('./partials/head.ejs') %> 
+    </head>
+    <body style="width: 100vw;">
+
+        <!-- Contains all the content -->
+        <div class="d-flex flex-column mt-5">
+
+            <!-- Side Bar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3 mt-4 mx-3 rounded fixed-top" style="width: 8%; height: 95vh; background-color: #0f1217;">
+                <a href="/" class="d-flex align-items-center justify-content-center my-2 text-white text-decoration-none">
+                    <h4 class="text-center">Movies</h4>
+                </a>
+                
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto  mx-auto w-100">
+
+                    <li class="nav-item w-100 mb-3">
+                        <a href="/" class="nav-link w-100 text-white text-center"><i class="fas fa-home" style="font-size: 1.5em;"></i></a>
+                    </li>
+
+                    <li class="nav-item w-100">
+                        <a href="#" class="nav-link text-white w-100 text-center"><i class="fas fa-plus-square" style="font-size: 1.5em;"></i></a>
+                    </li>
+
+                    <!-- <li class="nav-item w-100">
+                        <a href="#" class="nav-link text-white w-100"><p>Genre</p></a>
+                    </li> -->
+                </ul>
+                <hr>
+            </div>
+
+
+            <!-- Trending Section && Search Bar-->
+            <div style="width: 79%;" class="mx-auto">
+
+                <!-- Search for movies input element -->
+                <div style="width: 98%;" class="mx-auto d-flex align-items-center">
+                    <i class="fas fa-search mx-2 mb-3" style="font-size: 1.2em;"></i>
+                    <input type="text" placeholder="Search for movies..." id="homepageInput" style="background-color: #0B0C10; width: 90%; border: none; margin-left: .5em;" class="mb-3">
+                </div>
+
+                <!-- Title -->
+                <h4 class="mx-3 my-4" style="opacity: .6;">Trending Now</h4>
+
+                <div class="d-flex mx-auto" style="width: 100%;" id="trendingElement">
+                    <% for(let j = 0; j <= 10; j++){ %> 
+                        <%  console.log(allAction[j]) %>
+                        <% let movie =  allAction[j]%>
+                        <!-- stores only the year from move.release_date string-->
+                        <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                        <!-- changes the first letter of string to uppercase -->
+                        <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+
+                        <!-- Need this div to allow the card div to widen width. COULD BE DUE TO ALL THE BOOTSTRAP THAT THIS WAS REQUIRED -->
+                        <div style="width: 30em;">
+                            <!-- Each Card -->
+                            <div class="container d-flex flex-column justify-content-end align-items-start rounded mb-3 mx-3 border-0" id='trendingCard' style="width: 20em; height: 10em; background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                                
+
+                                <!-- text part of card -->
+                                <div class="w-100">
+                                    <div class="card-body" style="padding: .2em .4em;">
+                                        <a href="/show/<%= movie._id %> " class="text-decoration-none text-dark">
+                
+                                            <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+                
+                                            <h5 class="card-title mt-1 mb-3" style="font-size: .9em;"><%= movie.title %> </h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                </div>
+            </div>
+            
+
+            <!-- Main Section -->
+            <div class="mx-auto d-flex flex-column" style="width: 80%;">
+
+                <!-- Action Title -->
+                <h4 class="mx-4 my-4" style="opacity: .6;">Action Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <!-- Action movie section -->
+                    <% for(let i = 0; i < 10; i++){ %> 
+                        <% let movie =  allAction[i]%> 
+                        <!-- stores only the year from move.release_date string-->
+                        <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                        <!-- changes the first letter of string to uppercase -->
+                        <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                        <!-- Each Card -->
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                            
+                            <!-- movie image -->
+                            <div class='d-flex justify-content-center' style="height: 85%;">
+                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            </div>
+
+                            <!-- bottom part of card -->
+                            <div class="w-100">
+                                <div class="card-body" style="padding: .2em .4em;">
+                                    <a href="/<%= movie._id %> " class="text-decoration-none text-dark">
+            
+                                        <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+            
+                                        <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                </main>
+
+
+                <!-- ========================================================================= -->
+                <!-- ========================================================================= -->
+
+
+                <!-- Adventure Title -->
+                <h4 class="mx-4 my-4" style="opacity: .6;">Adventure Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <!-- Adventure movie section -->
+                    <% for(let i = 0; i < 10; i++){ %> 
+                        <% let movie =  allAdventure[i]%> 
+                        <!-- stores only the year from move.release_date string-->
+                        <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                        <!-- changes the first letter of string to uppercase -->
+                        <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                        <!-- Each Card -->
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                            
+                            <!-- movie image -->
+                            <div class='d-flex justify-content-center' style="height: 85%;">
+                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            </div>
+
+                            <!-- bottom part of card -->
+                            <div class="w-100">
+                                <div class="card-body" style="padding: .2em .4em;">
+                                    <a href="/<%= movie._id %> " class="text-decoration-none text-dark">
+            
+                                        <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+            
+                                        <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                </main>
+
+
+                <!-- ========================================================================= -->
+                <!-- ========================================================================= -->
+
+                <!-- Comedy Title -->
+                <h4 class="mx-4 my-4" style="opacity: .6;">Comedy Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <!-- Comedy movie section -->
+                    <% for(let i = 0; i < 10; i++){ %> 
+                        <% let movie =  allComedy[i]%> 
+                        <!-- stores only the year from move.release_date string-->
+                        <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                        <!-- changes the first letter of string to uppercase -->
+                        <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                        <!-- Each Card -->
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                            
+                            <!-- movie image -->
+                            <div class='d-flex justify-content-center' style="height: 85%;">
+                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            </div>
+
+                            <!-- bottom part of card -->
+                            <div class="w-100">
+                                <div class="card-body" style="padding: .2em .4em;">
+                                    <a href="/<%= movie._id %> " class="text-decoration-none text-dark">
+            
+                                        <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+            
+                                        <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                </main>
+
+
+                <!-- ========================================================================= -->
+                <!-- ========================================================================= -->
+
+
+                <!-- Horror Title -->
+                <h4 class="mx-4 my-4" style="opacity: .6;">Horror Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <!-- Horror movie section -->
+                    <% for(let i = 0; i < 10; i++){ %> 
+                        <% let movie =  allHorror[i]%> 
+                        <!-- stores only the year from move.release_date string-->
+                        <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                        <!-- changes the first letter of string to uppercase -->
+                        <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                        <!-- Each Card -->
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                            
+                            <!-- movie image -->
+                            <div class='d-flex justify-content-center' style="height: 85%;">
+                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            </div>
+
+                            <!-- bottom part of card -->
+                            <div class="w-100">
+                                <div class="card-body" style="padding: .2em .4em;">
+                                    <a href="/<%= movie._id %> " class="text-decoration-none text-dark">
+            
+                                        <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+            
+                                        <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                </main>
+
+
+                <!-- ========================================================================= -->
+                <!-- ========================================================================= -->
+
+
+                <!-- Fantasy Title -->
+                <h4 class="mx-4 my-4" style="opacity: .6;">Fantasy Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <!-- Fantasy movie section -->
+                    <% for(let i = 0; i < 10; i++){ %> 
+                        <% let movie =  allFantasy[i]%> 
+                        <!-- stores only the year from move.release_date string-->
+                        <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                        <!-- changes the first letter of string to uppercase -->
+                        <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                        <!-- Each Card -->
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                            
+                            <!-- movie image -->
+                            <div class='d-flex justify-content-center' style="height: 85%;">
+                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            </div>
+
+                            <!-- bottom part of card -->
+                            <div class="w-100">
+                                <div class="card-body" style="padding: .2em .4em;">
+                                    <a href="/<%= movie._id %> " class="text-decoration-none text-dark">
+            
+                                        <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+            
+                                        <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                </main>
+
+            </div>
+        </div>
+
+
+        <!-- footer -->
+        <%- include('./partials/footer.ejs') %> 
+    </body>
+</html>
