@@ -37,7 +37,7 @@
 
 
             <!-- Trending Section && Search Bar-->
-            <div style="width: 79%;" class="mx-auto">
+            <div style="width: 81%;" class="mx-auto">
 
                 <!-- Search for movies input element -->
                 <div style="width: 98%;" class="mx-auto d-flex align-items-center">
@@ -62,12 +62,12 @@
                         <!-- Need this div to allow the card div to widen width. COULD BE DUE TO ALL THE BOOTSTRAP THAT THIS WAS REQUIRED -->
                         <div style="width: 30em;">
                             <!-- Each Card -->
-                            <div class="container d-flex flex-column justify-content-end align-items-start rounded mb-3 mx-3 border-0" id='trendingCard' style="width: 20em; height: 10em; background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                            <div class="container-fluid d-flex flex-column justify-content-end align-items-start rounded mb-3 mx-3 border-0" id='trendingCard' style="width: 20em; height: 12em; background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                                 
 
                                 <!-- text part of card -->
-                                <div class="w-100">
-                                    <div class="card-body" style="padding: .2em .4em;">
+                                <div class="w-100 container-fluid">
+                                    <div class="card-body container-fluid" style="padding: .2em .4em;">
                                         <a href="/show/<%= movie._id %> " class="text-decoration-none text-dark">
                 
                                             <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
@@ -84,13 +84,13 @@
             
 
             <!-- Main Section -->
-            <div class="mx-auto d-flex flex-column" style="width: 80%;">
+            <div class="mx-auto d-flex flex-column" style="width: 83%;">
 
                 <!-- Action Title -->
-                <h4 class="mx-4 my-4" style="opacity: .6;">Action Movies</h4>
+                <h4 class="my-4" style="opacity: .6; margin-left: 1.4em;">Action Movies</h4>
 
                 <!-- Movie Genre Section -->
-                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
 
                     <!-- Action movie section -->
                     <% for(let i = 0; i < 10; i++){ %> 
@@ -102,11 +102,10 @@
                         <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
 
                         <!-- Each Card -->
-                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
                             
                             <!-- movie image -->
-                            <div class='d-flex justify-content-center' style="height: 85%;">
-                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             </div>
 
                             <!-- bottom part of card -->
@@ -130,10 +129,10 @@
 
 
                 <!-- Adventure Title -->
-                <h4 class="mx-4 my-4" style="opacity: .6;">Adventure Movies</h4>
+                <h4 class="my-4" style="opacity: .6; margin-left: 1.4em;">Adventure Movies</h4>
 
                 <!-- Movie Genre Section -->
-                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
 
                     <!-- Adventure movie section -->
                     <% for(let i = 0; i < 10; i++){ %> 
@@ -145,11 +144,10 @@
                         <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
 
                         <!-- Each Card -->
-                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
                             
                             <!-- movie image -->
-                            <div class='d-flex justify-content-center' style="height: 85%;">
-                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            <div class="container-fluid w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             </div>
 
                             <!-- bottom part of card -->
@@ -172,10 +170,10 @@
                 <!-- ========================================================================= -->
 
                 <!-- Comedy Title -->
-                <h4 class="mx-4 my-4" style="opacity: .6;">Comedy Movies</h4>
+                <h4 class="my-4" style="opacity: .6; margin-left: 1.4em;">Comedy Movies</h4>
 
                 <!-- Movie Genre Section -->
-                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
 
                     <!-- Comedy movie section -->
                     <% for(let i = 0; i < 10; i++){ %> 
@@ -187,11 +185,10 @@
                         <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
 
                         <!-- Each Card -->
-                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
                             
                             <!-- movie image -->
-                            <div class='d-flex justify-content-center' style="height: 85%;">
-                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             </div>
 
                             <!-- bottom part of card -->
@@ -215,10 +212,10 @@
 
 
                 <!-- Horror Title -->
-                <h4 class="mx-4 my-4" style="opacity: .6;">Horror Movies</h4>
+                <h4 class="my-4" style="opacity: .6; margin-left: 1.4em;">Horror Movies</h4>
 
                 <!-- Movie Genre Section -->
-                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
 
                     <!-- Horror movie section -->
                     <% for(let i = 0; i < 10; i++){ %> 
@@ -230,11 +227,10 @@
                         <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
 
                         <!-- Each Card -->
-                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
                             
                             <!-- movie image -->
-                            <div class='d-flex justify-content-center' style="height: 85%;">
-                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             </div>
 
                             <!-- bottom part of card -->
@@ -258,10 +254,10 @@
 
 
                 <!-- Fantasy Title -->
-                <h4 class="mx-4 my-4" style="opacity: .6;">Fantasy Movies</h4>
+                <h4 class="my-4" style="opacity: .6; margin-left: 1.4em;">Fantasy Movies</h4>
 
                 <!-- Movie Genre Section -->
-                <main id="movieContainer" class="d-flex flex-wrap justify-content-around mx-auto w-100">
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
 
                     <!-- Fantasy movie section -->
                     <% for(let i = 0; i < 10; i++){ %> 
@@ -273,11 +269,10 @@
                         <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
 
                         <!-- Each Card -->
-                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 14em; height: 15em; background-color: #0B0C10;">
+                        <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
                             
                             <!-- movie image -->
-                            <div class='d-flex justify-content-center' style="height: 85%;">
-                                <img src="https://image.tmdb.org/t/p/original/<%= movie.poster_path %>" class="card-img-top w-100 rounded" alt="...">
+                            <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             </div>
 
                             <!-- bottom part of card -->
