@@ -18,8 +18,82 @@ body {
 }
 
 
-@media (max-width: 768px){
+@media (max-width: 1040px){
+    #container {
+        position: relative;
+    }
+
     #nav {
         background-color: #0B0C10!important;
+        /* flex-direction: row!important; */
+        color: white!important;
+        position: absolute!important;
+        left: 3%;
+        height: 10%!important;
+        margin-left: .1em!important;
+        /* opacity: .5; */
+    }
+
+    #movielogo{
+        display: none;
+    }
+
+    #home {
+        margin-top: 1em;
+    }
+
+    #comment-section {
+        /* margin-right: 10em!important; */
+    }
+
+    #homepageInput {
+        width: 75%!important;
+    }
+
+    #search {
+        margin-right: 0!important;
+        margin-left: 2em!important;
+    }
+    #comments-container {
+        margin-left: 0!important;
+    }
+
+    #comment {
+        margin-left: 0!important;
+    }
+
+    #navbarNav {
+        color: white!important;
+    }
+
+    #hamBtn {
+        color: white!important;
+        /* margin-right: 2em!important; */
+        position: absolute!important;
+        left: 0;
+        margin-bottom: .5em!important;
+    }
+
+    #footer-hr {
+        margin-left: 1em!important;
+        width: 90%!important;
+    }
+
+    footer{
+        margin-left: 2em!important;
+    }
+
+    #post-container {
+        margin-left: 1em!important;
+    }
+
+    #post-btn{
+        font-size: .7em!important;
+        width: 10em!important;
+        /* margin-left: 1em!important; */
+    }
+
+    #show-form {
+        margin-left: 0!important;
     }
 }

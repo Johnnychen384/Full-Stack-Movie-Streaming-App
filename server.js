@@ -17,7 +17,7 @@ const fantasySchema = require('./models/fantasySchema')
 const horrorSchema = require('./models/horrorSchema')
 const romanceSchema = require('./models/romanceSchema')
 const scienceSchema = require('./models/scienceSchema')
-
+const commentSchema = require('./models/commentsSchema')
 
 
 
@@ -304,10 +304,83 @@ app.get('/', (req, res) => {
 // Show routes ============================== //
 app.get('/action/:id', (req, res) => {
     actionSchema.findById(req.params.id, (error, movie) => {
-        res.render('show.ejs', {movie})
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: 'action', id: req.params.id})
+        })
     })
 })
 
+app.get('/comedy/:id', (req, res) => {
+    comedySchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: 'comedy', id: req.params.id})
+        })
+    })
+})
+
+app.get('/adventure/:id', (req, res) => {
+    adventureSchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `adventure`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/crime/:id', (req, res) => {
+    crimeSchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `crime`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/documentary/:id', (req, res) => {
+    documentarySchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `documentary`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/fantasy/:id', (req, res) => {
+    fantasySchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `fantasy`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/horror/:id', (req, res) => {
+    horrorSchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `horror`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/romance/:id', (req, res) => {
+    romanceSchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `romance`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/sci/:id', (req, res) => {
+    scienceSchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `sci`, id: req.params.id})
+        })
+    })
+})
+
+// ================================================= //
+// ==================== Post ======================= //
+app.post('/show/comments/:url/:id', (req, res) => {
+    commentSchema.create(req.body, (error, comment) => {
+        res.redirect(`/${req.params.url}/${req.params.id}`)
+    })
+})
 
 
 
