@@ -301,9 +301,12 @@ app.get('/', (req, res) => {
 })
 
 // ========================================= //
-// Show route ============================== //
-
-
+// Show routes ============================== //
+app.get('/action/:id', (req, res) => {
+    actionSchema.findById(req.params.id, (error, movie) => {
+        res.render('show.ejs', {movie})
+    })
+})
 
 
 

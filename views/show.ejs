@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Movies HomePage
+        </title>
+        <%- include('./partials/head.ejs') %> 
+    </head>
+    <body style="width: 100vw; background-color: #0B0C10; height: 100vh;">
+
+
+        <div class="d-flex w-100">
+
+            <!-- Side Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light p-3 mt-4 rounded fixed-top text-white" style="width: 8%; height: 95vh; background-color: #0f1217; margin-left: 2em;" id="nav">
+                <div class="d-flex flex-column justify-content-center align-items-start text-white">
+                    <div class="container-fluid w-100" id="navstuff">
+                        <!-- <a class="navbar-brand text-white" href="#">Movies</a> -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon text-white"></span>
+                        </button>
+            
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav d-flex flex-column justify-content-center align-items-center text-white">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" style="font-size: 1.2em;">Movies</a>
+                            </li>
+                            <hr style="width: 100%">
+                            <li class="nav-item mb-3">
+                            <a class="nav-link text-white" href="/"><i class="fas fa-home" style="font-size: 1.6em;"></i></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-white" href="#"><i class="fas fa-plus-square" style="font-size: 1.6em;"></i></a>
+                            </li>
+                
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </nav>
+
+
+
+
+            <!-- Contains all the content -->
+            <div class="d-flex flex-column mt-5 mx-auto" style="width: 80%;">
+
+                <!-- Search for movies input element -->
+                <div style="width: 98%;" class="mx-auto d-flex align-items-center">
+                    <i class="fas fa-search mx-2 mb-3 text-white" style="font-size: 1.2em;"></i>
+                    <input type="text" placeholder="Search for movies..." id="homepageInput" style="background-color: #0B0C10; width: 90%; border: none; margin-left: .5em;" class="mb-3">
+                </div>
+
+                <!-- video container -->
+                <main class="container d-flex justify-content-center" style="height: 70vh; opacity: .8;">
+                    <iframe class="img-fluid" width="97%" height="100%" src="https://www.youtube.com/embed/9jo51nJrO0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </main>
+
+                <!-- info container -->
+                <div class="container-fluid d-flex flex-column mx-1 my-3">
+                    <!-- Movie title -->
+                    <h5 class="container-fluid text-white" style="margin: 0 0 1em .1em;"><%= movie.title %> </h5>
+
+                    <!-- Container for everything below movie title -->
+                    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+
+                        <ul class="list-group list-group-horizontal">
+
+                            <!-- round pic of user -->
+                            <li class="list-group-item" style="width: 3em; height: 3em; border-radius: 50%; border: 1px solid black; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;"></li>
+
+                            <!-- User name/votes -->
+                            <li class="list-group-item text-white p-0" style="background-color: #0B0C10; margin: 0 2.5em 0 .8em;">
+                                <h5 class="mb-0 mt-2" style="font-size: 1.1em;">Joe Doe</h5>
+                                <p style="opacity: .6; font-size: .9em;"><%= movie.vote_average %>k votes</p>
+                            </li>
+
+                            <!-- subscribe btn -->
+                            <li class="list-group-item p-0" style="background-color: #0B0C10;"><button type="button" class="btn btn-light" style="border-radius: 1em; height: 67%; background-color: white;">Subscribe</button></li>
+                        </ul>
+                        
+                        
+
+                        <!-- Used bootstrap nav for video options -->
+                        <nav class="navbar navbar-expand-lg" style="background-color: #0B0C10;">
+                            <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                <!-- <span class="navbar-toggler-icon"></span> -->
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                <div class="navbar-nav">
+                                    <a href="nav-link">
+                                        <div class="d-flex">
+                                            
+                                            <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em 0 0 1em" style="color: black"><i class="far fa-thumbs-up" style="margin: 0 .3em"></i> 3.2k</a>
+
+                                            <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 0 1em 1em 0; margin-right: .5em;"><i class="far fa-thumbs-down"></i></a>
+                                        </div>
+                                    </a>
+                                    <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em; margin-right: .5em;"><i class="fas fa-share" style="margin: 0em .4em"></i> Share</a>
+
+                                    <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em; margin-right: .5em;"><i class="fas fa-download" style="margin: .2em .4em"></i> Download</a>
+
+                                    <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em; margin-right: .5em;"><i class="fas fa-cut" style="margin: .2em .4em"></i> Clip</a>
+
+                                    <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em; margin-right: .5em;"><i class="fas fa-folder-plus" style="margin: .2em .4em"></i> Save</a>
+                                </div>
+                            </div>
+                            </div>
+                        </nav>
+
+
+                    </div>
+
+                </div>
+
+                <!-- Summary section -->
+                <div class="accordion accordion-flush mx-auto text-white" id="accordionFlushExample"   style="border-radius: 1em; width: 96%;">
+                    <div class="accordion-item" style="border-radius: 1em;">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed d-flex flex-column align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border-radius: 1em;"> 
+                            <h5 style="font-size: 1em;">100k views</h5>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tempore nihil, accusantium expedita assumenda ab quo esse aliquid et earum rem, velit vel voluptatum? Harum sunt commodi error unde fuga - Show more
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body"><%= movie.overview %> Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dignissimos adipisci alias, veniam voluptate vero aliquam atque sequi dolore, culpa eaque a consequuntur! Quisquam, tenetur aliquid. Rem nam adipisci voluptatibus!</div>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        
+                    <!-- footer -->
+        <%- include('./partials/footer.ejs') %> 
+    </body>
+</html>

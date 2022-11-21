@@ -5,6 +5,12 @@
             Movies HomePage
         </title>
         <%- include('./partials/head.ejs') %> 
+
+        <style>
+            *{
+                color: white;
+            }
+        </style>
     </head>
     <body style="width: 100vw;">
 
@@ -37,18 +43,18 @@
 
 
             <!-- Trending Section && Search Bar-->
-            <div style="width: 81%;" class="mx-auto">
+            <div style="width: 81%;" class="mx-auto text-white">
 
                 <!-- Search for movies input element -->
-                <div style="width: 98%;" class="mx-auto d-flex align-items-center">
-                    <i class="fas fa-search mx-2 mb-3" style="font-size: 1.2em;"></i>
-                    <input type="text" placeholder="Search for movies..." id="homepageInput" style="background-color: #0B0C10; width: 90%; border: none; margin-left: .5em;" class="mb-3">
+                <div style="width: 98%;" class="mx-auto d-flex align-items-center text-white">
+                    <i class="fas fa-search mx-2 mb-3 text-white" style="font-size: 1.2em;"></i>
+                    <input type="text" placeholder="Search for movies..." id="homepageInput" style="background-color: #0B0C10; width: 90%; border: none; margin-left: .5em;" class="mb-3 text-white">
                 </div>
 
                 <!-- Title -->
-                <h4 class="mx-3 my-4" style="opacity: .6;">Trending Now</h4>
+                <h4 class="mx-3 my-4 text-white" style="opacity: .6;">Trending Now</h4>
 
-                <div class="d-flex mx-auto" style="width: 100%;" id="trendingElement">
+                <div class="d-flex mx-auto text-white" style="width: 100%;" id="trendingElement">
                     <% for(let j = 0; j <= 10; j++){ %> 
                         <%  console.log(allAction[j]) %>
                         <% let movie =  allAction[j]%>
@@ -62,13 +68,13 @@
                         <!-- Need this div to allow the card div to widen width. COULD BE DUE TO ALL THE BOOTSTRAP THAT THIS WAS REQUIRED -->
                         <div style="width: 30em;">
                             <!-- Each Card -->
-                            <div class="container-fluid d-flex flex-column justify-content-end align-items-start rounded mb-3 mx-3 border-0" id='trendingCard' style="width: 20em; height: 12em; background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                            <div class="container-fluid d-flex flex-column justify-content-end align-items-start rounded mb-3 mx-3 border-0 text-white" id='trendingCard' style="width: 20em; height: 12em; background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                                 
 
                                 <!-- text part of card -->
-                                <div class="w-100 container-fluid">
-                                    <div class="card-body container-fluid" style="padding: .2em .4em;">
-                                        <a href="/show/<%= movie._id %> " class="text-decoration-none text-dark">
+                                <div class="w-100 container-fluid text-white">
+                                    <div class="card-body container-fluid text-white" style="padding: .2em .4em;">
+                                        <a href="/show/<%= movie._id %> " class="text-decoration-none text-white">
                 
                                             <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
                 
@@ -111,7 +117,7 @@
                             <!-- bottom part of card -->
                             <div class="w-100">
                                 <div class="card-body" style="padding: .2em .4em;">
-                                    <a href="/<%= movie._id %> " class="text-decoration-none text-dark">
+                                    <a href="/action/<%= movie._id %> " class="text-decoration-none text-dark">
             
                                         <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
             
