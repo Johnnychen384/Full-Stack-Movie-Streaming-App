@@ -296,6 +296,51 @@
                     <% } %> 
                 </main>
 
+
+                <!-- ///////////////////////////////////////////////////////////////////////////////////////////-->
+                <!-- ///////////////////////////////////Customs Section///////////////////////////////////////// -->
+
+                <!-- Custom Title -->
+                <h4 class="my-4" style="opacity: .6; margin-left: 1.4em;">Your Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <!-- Custom movie section -->
+                    <% if(allCustom.length > 0){ %> 
+                        <% for(let i = 0; i < allCustom.length; i++){ %> 
+                            <% let movie =  allCustom[i]%> 
+                            <!-- stores only the year from move.release_date string-->
+                            <% const movieYear = movie.release_date%> 
+
+                            <!-- changes the first letter of string to uppercase -->
+                            <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                            <!-- Each Card -->
+                            <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
+                                
+                                <!-- movie image -->
+                                <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                                </div>
+
+                                <!-- bottom part of card -->
+                                <div class="w-100">
+                                    <div class="card-body" style="padding: .2em .4em;">
+                                        <a href="/custom/<%= movie._id %> " class="text-decoration-none text-dark">
+                
+                                            <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+                
+                                            <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %> 
+                    <% } else {%>
+                        Currently Empty
+                    <% } %> 
+                </main>
+
             </div>
         </div>
 

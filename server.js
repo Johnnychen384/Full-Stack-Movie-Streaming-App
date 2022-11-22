@@ -18,7 +18,7 @@ const horrorSchema = require('./models/horrorSchema')
 const romanceSchema = require('./models/romanceSchema')
 const scienceSchema = require('./models/scienceSchema')
 const commentSchema = require('./models/commentsSchema')
-
+const customSchema = require('./models/customSchema')
 
 
 // Seed Data Functions ====================
@@ -277,16 +277,19 @@ app.get('/', (req, res) => {
                             romanceSchema.find({}, (error, rom) => {
                                 adventureSchema.find({}, (error, adventure) => {
                                     scienceSchema.find({}, (error, sci) => {
-                                        res.render('index.ejs', {
-                                            allAction: action,
-                                            allComedy: comedy,
-                                            allCrime: crime,
-                                            allDocumentary: doc,
-                                            allFantasy: fantasy,
-                                            allHorror: horror,
-                                            allRomance: rom,
-                                            allAdventure: adventure,
-                                            allScience: sci
+                                        customSchema.find({}, (error, custom) => {
+                                            res.render('index.ejs', {
+                                                allAction: action,
+                                                allComedy: comedy,
+                                                allCrime: crime,
+                                                allDocumentary: doc,
+                                                allFantasy: fantasy,
+                                                allHorror: horror,
+                                                allRomance: rom,
+                                                allAdventure: adventure,
+                                                allScience: sci,
+                                                allCustom: custom
+                                            })
                                         })
                                     })
                                 })
@@ -374,6 +377,18 @@ app.get('/sci/:id', (req, res) => {
     })
 })
 
+app.get('/custom/:id', (req, res) => {
+    customSchema.findById(req.params.id, (error, movie) => {
+        commentSchema.find({}, (error, comments) => {
+            res.render('show.ejs', {movie, comments, url: `custom`, id: req.params.id})
+        })
+    })
+})
+
+app.get('/new', (req, res) => {
+    res.render('new.ejs')
+})
+
 // ================================================= //
 // ==================== Post ======================= //
 app.post('/show/comments/:url/:id', (req, res) => {
@@ -382,7 +397,11 @@ app.post('/show/comments/:url/:id', (req, res) => {
     })
 })
 
-
+app.post('/new', (req, res) => {
+    customSchema.create(req.body, (error, item) => {
+        res.redirect('/')
+    })
+})
 
 // ================ Connections ==================== //
 app.listen(3000)
