@@ -78,6 +78,12 @@
                                         <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em; margin-right: .5em;"><i class="fas fa-cut" style="margin: .2em .4em"></i> Clip</a>
 
                                         <a class="nav-link text-dark" href="#" style="background-color: white; border-radius: 1em; margin-right: .5em;"><i class="fas fa-folder-plus" style="margin: .2em .4em"></i> Save</a>
+
+                                        <form action="/favorite/<%= url %>/<%= movie._id %> " method="POST" class="nav-link text-dark" style="background-color: white; border-radius: 1em; margin-right: .5em;">
+                                            <button type="submit" style="background: none; border: none;"><i class="fas fa-bookmark" style="margin: .2em .4em"></i>Favorite </button>
+                                        </form>
+                                        
+
                                     </div>
                                 </div>
                                 </div>

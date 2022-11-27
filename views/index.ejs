@@ -318,11 +318,7 @@
                                     <!-- movie image -->
                                     <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: white; background-image: url('<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                                         <form action="/custom/<%= movie.id %>?_method=DELETE" method="POST" class="deleteForm">
-                                            <button type="submit" style="background: none; border: none; padding-left: 0;" class="btn<%= i %> deleteBtn"><i class="fas fa-minus-circle text-dark mt-2"></i></button>
-                                        </form>
-
-                                        <form action="/custom/fantasy/<%= movie._id %>" method="GET" class="deleteForm w-50">
-                                            <button type="submit" style="background: none; border: none; padding-left: 0; " class="btn<%= i %> deleteBtn"><i class="fas fa-edit text-dark mt-2"></i></button>
+                                            <button type="submit" style="background: none; border: none; padding-left: 0;" class="btn<%= i %> deleteBtn"><i class="fas fa-minus-circle text-white mt-2"></i></button>
                                         </form>
                                     </div>
 

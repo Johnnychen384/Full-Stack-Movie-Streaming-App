@@ -1,4 +1,5 @@
 $(() => {
+    console.log("ready")
     // Show btn function
     const showDeleteBtn = (e) => {
         let target = $(e.target)

@@ -19,6 +19,7 @@ const romanceSchema = require('./models/romanceSchema')
 const scienceSchema = require('./models/scienceSchema')
 const commentSchema = require('./models/commentsSchema')
 const customSchema = require('./models/customSchema')
+const favoriteSchema = require('./models/favoriteSchema')
 
 
 // Seed Data Functions ====================
@@ -159,6 +160,7 @@ const getSeedData = () => {
 // })
 
 
+
 // Remove collections ================== //
 // actionSchema.collection.drop()
 // adventureSchema.collection.drop()
@@ -169,6 +171,7 @@ const getSeedData = () => {
 // horrorSchema.collection.drop()
 // romanceSchema.collection.drop()
 // scienceSchema.collection.drop()
+// favoriteSchema.collection.drop()
 
 
 
@@ -451,18 +454,185 @@ app.get('/edit/custom/:id', (req, res) => {
     })
 })
 
+// ==================== Get for favorite route ======================= //
+// hash table used for favorite movies page. Allows for the favorite movies to trigger get route to show movie.
+const genreHash = {
+    28: "action",
+    12: "adventure",
+    35: "comedy",
+    80: "crime",
+    99: "documentary",
+    14: "fantasy",
+    27: "horror",
+    10749: "roamnce",
+    878: "sci"
+}
+
+// Route for favorite movies.
+app.get('/movie/favorites', (req, res) => {
+    favoriteSchema.find({}, (error, allMovies) => {
+        // passes in just the movies array inside the "user" db
+        // console.log(allMovies[0].movies)
+        res.render('favorite.ejs', {allMovies: allMovies[0].movies, genreHash})
+    })
+    
+})
 
 
 
 
 // ================================================= //
 // ==================== Post ======================= //
+
+// Creates a SINGLE collection with a single document
+// favoriteSchema.create({name: "Johnny"}, (req, res) => {
+//     console.log("Done")
+// })
+
+// adds movie to favoriteDB
+app.post('/favorite/:url/:id', (req, res) => {
+    
+    // condition to help determine which schema to call findById on.
+    const url = req.params.url
+
+    if(url === "action"){
+        actionSchema.findById(req.params.id, (error, item) => {  
+
+            // Finds the document with name Johnny
+            favoriteSchema.find({name: "Johnny"}, (error, object) => {
+                // pushs movie into the documents array
+                object[0].movies.push(item)
+                // saves
+                object[0].save((error, data) => {
+                    res.redirect(`/action/${req.params.id}`)
+                })
+            })
+            
+        })
+    } else if(url === "adventure"){
+        adventureSchema.findById(req.params.id, (error, item) => {
+            // Finds the document with name Johnny
+            favoriteSchema.find({name: "Johnny"}, (error, object) => {
+                // pushs movie into the documents array
+                object[0].movies.push(item)
+                // saves
+                object[0].save((error, data) => {
+                    res.redirect(`/adventure/${req.params.id}`)
+                })
+            })
+        })
+    } else if(url === "comedy"){
+        comedySchema.findById(req.params.id, (error, item) => {
+           // Finds the document with name Johnny
+           favoriteSchema.find({name: "Johnny"}, (error, object) => {
+            // pushs movie into the documents array
+            object[0].movies.push(item)
+            // saves
+            object[0].save((error, data) => {
+                res.redirect(`/comedy/${req.params.id}`)
+            })
+        })
+            
+        })
+    } else if(url === "crime"){
+        crimeSchema.findById(req.params.id, (error, item) => {
+           // Finds the document with name Johnny
+           favoriteSchema.find({name: "Johnny"}, (error, object) => {
+            // pushs movie into the documents array
+            object[0].movies.push(item)
+            // saves
+            object[0].save((error, data) => {
+                res.redirect(`/crime/${req.params.id}`)
+            })
+        })
+            
+        })
+    } else if(url === "custom"){
+        customSchema.findById(req.params.id, (error, item) => {
+           // Finds the document with name Johnny
+           favoriteSchema.find({name: "Johnny"}, (error, object) => {
+            // pushs movie into the documents array
+            object[0].movies.push(item)
+            // saves
+            object[0].save((error, data) => {
+                res.redirect(`/custom/${req.params.id}`)
+            })
+        })
+            
+        })
+    } else if(url === "documentary"){
+        documentarySchema.findById(req.params.id, (error, item) => {
+            // Finds the document with name Johnny
+            favoriteSchema.find({name: "Johnny"}, (error, object) => {
+                // pushs movie into the documents array
+                object[0].movies.push(item)
+                // saves
+                object[0].save((error, data) => {
+                    res.redirect(`/documentary/${req.params.id}`)
+                })
+            })
+            
+        })
+    } else if(url === "fantasy"){
+        fantasySchema.findById(req.params.id, (error, item) => {
+           // Finds the document with name Johnny
+           favoriteSchema.find({name: "Johnny"}, (error, object) => {
+            // pushs movie into the documents array
+            object[0].movies.push(item)
+            // saves
+            object[0].save((error, data) => {
+                res.redirect(`/fantasy/${req.params.id}`)
+            })
+        })
+            
+        })
+    } else if(url === "horror"){
+        horrorSchema.findById(req.params.id, (error, item) => {
+            // Finds the document with name Johnny
+            favoriteSchema.find({name: "Johnny"}, (error, object) => {
+                // pushs movie into the documents array
+                object[0].movies.push(item)
+                // saves
+                object[0].save((error, data) => {
+                    res.redirect(`/horror/${req.params.id}`)
+                })
+            })
+        })
+    } else if(url === "romance"){
+        romanceSchema.findById(req.params.id, (error, item) => {
+            // Finds the document with name Johnny
+            favoriteSchema.find({name: "Johnny"}, (error, object) => {
+                // pushs movie into the documents array
+                object[0].movies.push(item)
+                // saves
+                object[0].save((error, data) => {
+                    res.redirect(`/romance/${req.params.id}`)
+                })
+            })
+        })
+    } else if(url === "science"){
+        scienceSchema.findById(req.params.id, (error, item) => {
+            // Finds the document with name Johnny
+            favoriteSchema.find({name: "Johnny"}, (error, object) => {
+                // pushs movie into the documents array
+                object[0].movies.push(item)
+                // saves
+                object[0].save((error, data) => {
+                    res.redirect(`/science/${req.params.id}`)
+                })
+            })
+        })
+    } 
+})
+
+// creates new comment in show page
 app.post('/show/comments/:url/:id', (req, res) => {
     commentSchema.create(req.body, (error, comment) => {
         res.redirect(`/${req.params.url}/${req.params.id}`)
     })
 })
 
+// Creates new movie
 app.post('/new', (req, res) => {
     customSchema.create(req.body, (error, item) => {
         res.redirect('/')
@@ -473,14 +643,27 @@ app.post('/new', (req, res) => {
 
 // ================================================= //
 // ==================== Delete ======================= //
+// delete movie from custom
 app.delete('/custom/:id', (req, res) => {
     customSchema.findByIdAndRemove(req.params.id, (error, item) => {
         res.redirect('/')
     })
 })
 
+// Delete movie from favorites
+app.delete('/delete/:id', (req, res) => {
+    favoriteSchema.findOne({name: "Johnny"}, (error, object) => {
+        object.movies.id(req.params.id).remove()
+        object.save((error, data) => {
+            res.redirect('/movie/favorites')
+        })
+        
+    })
+})
+
 // ================================================= //
 // ==================== PUT ======================= //
+// Edit movie
 app.put('/edit/:url/:id', (req, res) => {
     const url = req.params.url
     if(url === "action"){

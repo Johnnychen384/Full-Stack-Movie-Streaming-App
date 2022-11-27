@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Movies HomePage
+        </title>
+        <%- include('./partials/head.ejs') %> 
+    </head>
+    <body style="width: 100vw; background-color: #0B0C10; height: 100vh;">
+
+
+        <div class="d-flex w-100" id="container" style="margin-bottom: 9em">
+
+            <!-- Side Bar -->
+            <%- include('./partials/sidebar.ejs') %> 
+
+            <!-- Main Section -->
+            <div class="mx-auto d-flex flex-column" style="width: 83%;">
+
+                <!-- Favorite Title -->
+                <h4 class="my-4 text-white" style="opacity: .6; margin-left: 1.4em;">Favorite Movies</h4>
+
+                <!-- Movie Genre Section -->
+                <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
+
+                    <% if(allMovies.length < 1){%> 
+
+                        <h1 class="text-white">Please Add Your Favorite Movie</h1>
+
+                    <% } else { %> 
+                        <!-- Favorite movie section -->
+                        <% for(let i = 0; i < allMovies.length; i++){ %> 
+                            <% let movie =  allMovies[i]%> 
+                            <% let genre = genreHash[movie.genre_ids[0]]%> 
+                            
+                            
+                            <!-- stores only the year from move.release_date string-->
+                            <% const movieYear = movie.release_date.substr(0, 4)%> 
+
+                            <!-- changes the first letter of string to uppercase -->
+                            <% const capitalizedLan = movie.original_language.substr(0, 1).toUpperCase() + movie.original_language.substr(1) %> 
+
+                            <!-- Each Card -->
+                            <div class="card d-flex flex-column justify-content-center align-items-center rounded mb-3 mx-3 border-0 text-white movieCards" id='movieCard' style="width: 13em; height: 24em; background-color: #0B0C10;">
+                                
+                                <!-- movie image -->
+                                <div class="container-fluid  w-100 h-100 rounded mb-3 mx-3 border-0" id='trendingCard' style="background-color: #0B0C10; background-image: url('https://image.tmdb.org/t/p/original/<%= movie.poster_path %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                                    <form action="/delete/<%= movie._id %>?_method=DELETE" method="POST" class="deleteForm">
+                                        <button type="submit" style="background: none; border: none; padding-left: 0; " class="btn<%= i %> deleteBtn"><i class="fas fa-trash text-white mt-2"></i></button>
+                                    </form>
+                                </div>
+
+                                <!-- bottom part of card -->
+                                <div class="w-100">
+                                    <div class="card-body" style="padding: .2em .4em;">
+                                        <a href="/<%= genre %>/<%= movie._id %>" class="text-decoration-none text-white">
+                
+                                            <p style="font-size: .6em; margin-bottom: 0; opacity: .6;"><%= movieYear %> • ★ <%= movie.vote_average %> • <%= capitalizedLan  %>  </p>
+                
+                                            <h5 class="card-title mt-1" style="font-size: .7em;"><%= movie.title %> </h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %> 
+                    <% } %> 
+                </main>
+            </div>
+
+        </div>
+
+
+        
+        <!-- footer -->
+        <%- include('./partials/footer.ejs') %> 
+    </body>
+</html>
