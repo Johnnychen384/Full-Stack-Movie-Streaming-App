@@ -389,6 +389,72 @@ app.get('/new', (req, res) => {
     res.render('new.ejs')
 })
 
+// ==================== Get Routes for Edits page ======================= //
+app.get('/edit/action/:id', (req, res) => {
+    actionSchema.findById(req.params.id, (error, movie) => {
+        console.log("This is the " + movie)
+        res.render('edit.ejs', {movie, url: 'action', id: req.params.id})
+    })
+})
+
+app.get('/edit/comedy/:id', (req, res) => {
+    comedySchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: 'comedy', id: req.params.id})
+    })
+})
+
+app.get('/edit/adventure/:id', (req, res) => {
+    adventureSchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `adventure`, id: req.params.id})
+    })
+})
+
+app.get('/edit/crime/:id', (req, res) => {
+    crimeSchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `crime`, id: req.params.id})
+    })
+})
+
+app.get('/edit/documentary/:id', (req, res) => {
+    documentarySchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `documentary`, id: req.params.id})
+    })
+})
+
+app.get('/edit/fantasy/:id', (req, res) => {
+    fantasySchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `fantasy`, id: req.params.id})
+    })
+})
+
+app.get('/edit/horror/:id', (req, res) => {
+    horrorSchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `horror`, id: req.params.id})
+    })
+})
+
+app.get('/edit/romance/:id', (req, res) => {
+    romanceSchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `romance`, id: req.params.id})
+    })
+})
+
+app.get('/edit/sci/:id', (req, res) => {
+    scienceSchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `sci`, id: req.params.id})
+    })
+})
+
+app.get('/edit/custom/:id', (req, res) => {
+    customSchema.findById(req.params.id, (error, movie) => {
+        res.render('edit.ejs', {movie, url: `custom`, id: req.params.id})
+    })
+})
+
+
+
+
+
 // ================================================= //
 // ==================== Post ======================= //
 app.post('/show/comments/:url/:id', (req, res) => {
@@ -402,6 +468,64 @@ app.post('/new', (req, res) => {
         res.redirect('/')
     })
 })
+
+
+
+// ================================================= //
+// ==================== Delete ======================= //
+app.delete('/custom/:id', (req, res) => {
+    customSchema.findByIdAndRemove(req.params.id, (error, item) => {
+        res.redirect('/')
+    })
+})
+
+// ================================================= //
+// ==================== PUT ======================= //
+app.put('/edit/:url/:id', (req, res) => {
+    const url = req.params.url
+    if(url === "action"){
+        actionSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "adventure"){
+        adventureSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "comedy"){
+        comedySchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "crime"){
+        crimeSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "custom"){
+        customSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "documentary"){
+        documentarySchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "fantasy"){
+        fantasySchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "horror"){
+        horrorSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "romance"){
+        romanceSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } else if(url === "science"){
+        scienceSchema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updated) => {
+            res.redirect('/')
+        })
+    } 
+})
+
 
 // ================ Connections ==================== //
 app.listen(3000)
