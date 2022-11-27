@@ -13,7 +13,7 @@ const customSchema = require('./customSchema')
 
 const favoriteSchema = new mongoose.Schema({
     name: {type: String},
-    movies: [actionSchema.schema]
+    movies: [actionSchema.schema, comedySchema.schema, adventureSchema.schema, crimeSchema.schema, documentarySchema.schema, fantasySchema.schema, horrorSchema.schema, romanceSchema.schema, scienceSchema.schema, customSchema.schema]
 })
 
 const favorite = mongoose.model('Favorite', favoriteSchema)

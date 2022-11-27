@@ -18,7 +18,7 @@
             <div class="mx-auto d-flex flex-column" style="width: 83%;">
 
                 <!-- Favorite Title -->
-                <h4 class="my-4 text-white" style="opacity: .6; margin-left: 1.4em;">Favorite Movies</h4>
+                <h4 class="my-5 text-white text-center" style="opacity: .6;">Favorite Movies</h4>
 
                 <!-- Movie Genre Section -->
                 <main id="movieContainer" class="container-fluid d-flex flex-wrap justify-content-around mx-auto w-100">
@@ -31,7 +31,8 @@
                         <!-- Favorite movie section -->
                         <% for(let i = 0; i < allMovies.length; i++){ %> 
                             <% let movie =  allMovies[i]%> 
-                            <% let genre = genreHash[movie.genre_ids[0]]%> 
+                            <% let genre = genreHash[movie.genre_ids[0]] ? genreHash[movie.genre_ids[0]] : genreHash[movie.genre_ids[1]]%> 
+                            <% console.log(genre, movie) %> 
                             
                             
                             <!-- stores only the year from move.release_date string-->
