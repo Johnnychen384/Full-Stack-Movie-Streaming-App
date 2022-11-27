@@ -21,5 +21,6 @@
 2. Weird bug where the edit or delete icons will not disappear when mouseleaves the element.
 
 ## Note
-  A. limit each movie in favorites array using title
-  B. When movie is added into favorites array possibly include the genre it was found in
+  1. limit each movie in favorites array using title
+  
+  2. When movie is added into favorites array possibly include the genre it was found in
